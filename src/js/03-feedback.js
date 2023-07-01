@@ -35,9 +35,13 @@ function handleSubmit (event) {
     try{
     event.preventDefault();
     const savedUserData = JSON.parse(localStorage.getItem('feedback-form-state'));
-    console.log(savedUserData);
-    localStorage.clear();
-    event.currentTarget.reset();
+    if (savedUserData.email === '' || savedUserData.message === ''){
+        alert("You must complete all lines")
+    } else{
+        console.log(savedUserData);
+        localStorage.removeItem('feedback-form-state');
+        event.currentTarget.reset();
+    }
 } catch (err){
     console.log(err);
 }
